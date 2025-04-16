@@ -75,19 +75,19 @@ def build_total_results(nkpts, nbands, band_gap, ndeg_con, ndeg_val, cbm_values,
 
 def create_output_folder():
 
-    output_filenames = ["MY_REPORT.txt", "Band_Plot.png", "Fit_Check*"]
+    output_keywords = ["MY_REPORT", "Band_Plot", "Fit_Check"]
     output_dir = "./Output_Files/"
-
-    dir_exists = os.path.exists(output_dir)
-    if not dir_exists:
+    
+    # Check and/or create the output directory
+    if not os.path.exists(output_dir):
         print(f"Creating output directory '{output_dir}'...")
         os.makedirs(output_dir)
         if not os.path.exists(output_dir):
             raise FileNotFoundError(f"Could not create output directory {output_dir}")
-    elif dir_exists:
+    else:
         overwrite_prompt = True
         while overwrite_prompt:
-            overwrite = input(f"Directory '{output_dir}' already exists. Overwrite the files in '{output_dir}'? [y/n]")
+            overwrite = input(f"Directory '{output_dir}' already exists. Overwrite the files in '{output_dir}'? [y/n] ")
             if overwrite == 'y':
                 print(f"We will overwrite the files in {output_dir}")
                 overwrite_prompt = False
@@ -96,16 +96,26 @@ def create_output_folder():
                 sys.exit()
             else:
                 print("Please type either a 'y' or an 'n' (without single quotes)")
-
-    for name in output_filenames:
-        file_exists = os.path.exists(name)
-        if file_exists:
-            if os.path.exists(output_dir+name):
-                os.remove(output_dir+name)
-            shutil.move(name, output_dir)
-        else:
-            print(os.listdir())
-            raise FileNotFoundError(f"The file '{name}' was not created and so cannot be moved :(")
+    
+    # Get all files in the current directory
+    all_files = [f for f in os.listdir('.') if os.path.isfile(f)]
+    
+    # Filter files that contain any of the output keywords
+    files_to_move = [f for f in all_files if any(keyword in f for keyword in output_keywords)]
+    
+    # Move them into the output folder
+    for filename in files_to_move:
+        target_path = os.path.join(output_dir, filename)
+    
+        # Remove existing file in the output directory if it exists
+        if os.path.exists(target_path):
+            os.remove(target_path)
+    
+        shutil.move(filename, target_path)
+        print(f"Moved: {filename} -> {output_dir}")
+    
+    if not files_to_move:
+        print("No output files matched the given keywords.")
 
 def write_summary_to_file(results, output_path):
     with open(output_path, 'w') as f:
