@@ -74,6 +74,8 @@ def fit_check(fit_ks, fit_Es, con_ks, con_Es, kpoint_values, kpoint_labels, plot
     plt.axvline(mid_k, alpha = 0.4)
     if ISCBM:
         plt.savefig("Fit_Check_CBM" + str(index) + ".png")
+    else:
+        plt.savefig("Fit_Check_VBM" + str(index) + ".png")
 
 def fit_parabola(kpoints, energies, min_kpoint_value, nkpts, kpoint_labels):
     min_kpoint_index = np.where(kpoints == min_kpoint_value)[0][0]
