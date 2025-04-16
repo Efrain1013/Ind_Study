@@ -134,7 +134,7 @@ def write_summary_to_file(results, output_path):
 
         f.write("Valence Band Minima (VBMs):\n")
         for i, vbm in enumerate(results.vbm_list):
-            f.write(f"vBM #{i+1}:\n"
+            f.write(f"VBM #{i+1}:\n"
                     f"   Band Index = {vbm.band_index}\n"
                     f"   Effective Mass = {vbm.mass_eff:.7e} kg = {vbm.mass_ratio:.7f} m_e\n"
                     f"   Leading Coefficient (in parabola equation) = {vbm.lead_coeff}\n"
