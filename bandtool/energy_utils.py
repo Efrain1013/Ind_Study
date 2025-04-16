@@ -49,6 +49,8 @@ def fit_check(fit_ks, fit_Es, con_ks, con_Es, kpoint_values, kpoint_labels, plot
         ind = np.where(fit_Es == max(fit_Es))
         mid_k = fit_ks[ind]
 
+    infinity = float('inf')
+    fit_bounds = [[-infinity, -infinity, -infinity, -infinity], [infinity, infinity, infinity, infinity]]
 
     fig, ax = plt.subplots(figsize=(12, 8))
     plt.title(plot_name)
