@@ -10,7 +10,7 @@ def norm_energies(all_energies):
     ndeg_val_bands = -1
     ndeg_con_bands = -1
 
-    max_val_energy = -1.0E20
+    max_val_energy = -float('inf')
     
     for band in all_energies:
         max_of_band = max(band)
