@@ -1,5 +1,5 @@
-from energy_utils import fit_parabola, fit_check, find_mass_eff
-from kpath_utils import kpath_position
+from bandtool.energy_utils import fit_parabola, fit_check, find_mass_eff
+from bandtool.kpath_utils import kpath_position
 import os, shutil, sys
 
 def get_band_results(kpoints, energies, kpoint_values, kpoint_labels, con_index, val_index, ndeg_con, ndeg_val, nkpts):
