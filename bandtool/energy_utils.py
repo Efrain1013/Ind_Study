@@ -22,7 +22,7 @@ def norm_energies(all_energies):
     
     min_con_energy = min(all_energies[con_index])
     for i in range(con_index + 10):
-        if i > len(all_energies):
+        if i >= len(all_energies):
             continue
         if -1.0E-17 < max(all_energies[i]) - max_val_energy < 1.0E-17:
             ndeg_val_bands += 1
