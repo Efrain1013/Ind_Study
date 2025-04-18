@@ -5,11 +5,11 @@ def plot_bands(all_kpoints, all_energies, kpoint_values, kpoint_labels, nkpts):
     if len(all_energies) == nkpts:
         one_array = 1
         minimum_E = min(all_energies)/ 2. - 0.2
-        maximum_E = max(all_energies)
+        maximum_E = max(all_energies) / 1.5
         maximum_k = max(all_kpoints)
     else:
         minimum_E = min([min(band) for band in all_energies]) / 2. - 0.2
-        maximum_E = max([max(band) for band in all_energies])
+        maximum_E = max([max(band) for band in all_energies]) / 1.5
         maximum_k = max([max(kline) for kline in all_kpoints])
     
     
