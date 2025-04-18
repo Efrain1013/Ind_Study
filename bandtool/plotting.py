@@ -9,11 +9,12 @@ def plot_bands(all_kpoints, all_energies, kpoint_values, kpoint_labels, nkpts):
     else:
         minimum_E = min([min(band) for band in all_energies]) / 2. - 0.2
         maximum_k = max([max(kline) for kline in all_kpoints])
+    maximum_E = max(all_energies)
     
     fig1, ax1 = plt.subplots(figsize=(12, 8))
     plt.title("Band Structure", fontsize=20)
     ax1.tick_params(axis='both', which='both', labelsize=11)
-    plt.ylim(minimum_E, 6)
+    plt.ylim(minimum_E, min(6., maximum_E))
     plt.xlim(0., maximum_k)
 
     if one_array:
