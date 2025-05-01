@@ -27,13 +27,13 @@ def kpath_position(kpoints, energies, kpoint_value, kpoint_name):
             if kpoint_value[i] <= min_kpoint <= kpoint_value[i+1]:
                 min_k_path_name = [kpoint_name[i], kpoint_name[i+1]]
                 path_amount = (min_kpoint - kpoint_value[i]) / (kpoint_value[i+1] - kpoint_value[i])
-                return min_kpoint, min_k_path_name, path_amount
+                return min_kpoint, min_k_path_name, path_amount, min_index
             
     elif not band_is_cbm:
         for i in range(len(kpoint_value)):
             if kpoint_value[i] <= max_kpoint <= kpoint_value[i+1]:
                 max_k_path_name = [kpoint_name[i], kpoint_name[i+1]]
                 path_amount = (max_kpoint - kpoint_value[i]) / (kpoint_value[i+1] - kpoint_value[i])
-                return max_kpoint, max_k_path_name, path_amount
+                return max_kpoint, max_k_path_name, path_amount, max_index
     else:
         raise ValueError('min_k_path_name is undefined')

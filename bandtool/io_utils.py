@@ -1,37 +1,23 @@
 import numpy as np
 
 
-def read_nbands(filename):
+def read_nkpts_and_nbands(filename):
     """
-    Reads NBANDS from the BAND.dat file.
-    """
-    # print("We're in function")
-    with open(filename, 'r') as f:
-        for line in f:
-            # print(line)
-            if 'NBANDS' in line:
-                parts = line.strip().split()
-                nbands = int(parts[-1])
-                # print(nbands)
-                return nbands
-
-    raise ValueError("Could not find NBANDS in file.")
-
-def read_nkpts(filename):
-    """
-    Reads NKPTS from the BAND.dat file.
+    Reads NKPTS and NBANDS from the BAND.dat file without using regular expressions.
+    Expecting the format: NKPTS & NBANDS: 400  64
+    Inputs: filename --> "BAND.dat"
+    Outputs: nkpts, nband
     """
     with open(filename, 'r') as f:
         for line in f:
-            # print(line)
-            if 'NKPTS' in line:
+            # We are looking for the line that has NKPTS and NBANDS
+            if 'NKPTS' in line and 'NBANDS' in line:
                 parts = line.strip().split()
-                # print(parts)
-                nkpts = int(parts[-2])
-                return nkpts
+                nkpts = int(parts[-2])          # The first number is NKPTS
+                nbands = int(parts[-1])         # The second number is NBANDS
+                return nkpts, nbands
 
-    raise ValueError("Could not find NKPTS in file.")
-
+    raise ValueError("Could not find NKPTS and NBANDS in file.")
 
 def find_ken_values(filename):
     """
@@ -47,8 +33,7 @@ def find_ken_values(filename):
     with open(filename, "r") as file:
         data = np.loadtxt(file)
 
-    NKPTS = read_nkpts(filename)
-    NBANDS = read_nbands(filename)
+    NKPTS, NBANDS = read_nkpts_and_nbands(filename)
     # print(f"NKPTS: {NKPTS} | NBANDS: {NBANDS}")
     all_kpoints = [float(value) for value in data[:, 0]]
     all_energies = [float(value) for value in data[:, 1]]
