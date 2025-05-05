@@ -1,7 +1,7 @@
-from bandtool_update.io_utils import find_ken_values, split_kE, get_kpoint_labels
-from bandtool_update.energy_utils import norm_energies
-from bandtool_update.plotting import plot_bands
-from bandtool_update.output_utils import build_band_extrema_list, build_total_results, write_summary_to_file, create_output_folder, get_band_results
+from bandtool.io_utils import find_ken_values, split_kE, get_kpoint_labels
+from bandtool.energy_utils import norm_energies
+from bandtool.plotting import plot_bands
+from bandtool.output_utils import build_band_extrema_list, build_total_results, write_summary_to_file, create_output_folder, get_band_results
 
 def main():
     print("Running main script...")
