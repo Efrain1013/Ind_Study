@@ -1,5 +1,5 @@
-from bandtool_update.energy_utils import fit_parabola, fit_check, find_mass_eff
-from bandtool_update.kpath_utils import kpath_position
+from bandtool.energy_utils import fit_parabola, fit_check, find_mass_eff
+from bandtool.kpath_utils import kpath_position
 import numpy as np
 import os, shutil, sys
 
