@@ -54,7 +54,8 @@ def plot_bands(all_kpoints, all_energies, kpoint_values, kpoint_labels, nkpts, C
         else:
             maximum_k, minimum_k, maximum_E, minimum_E, width = plot_limits(all_kpoints, all_energies, CUT, ISCBM, one_array, i)
             
-        maximum_E = 300.
+        maximum_E = min(maximum_E, 5.1)
+        minimum_E = max(minimum_E, -5.1)
         fig1, ax1 = plt.subplots(figsize=(width, 8))
         plt.title("Band Structure", fontsize=20)
         ax1.tick_params(axis='both', which='both', labelsize=11)
